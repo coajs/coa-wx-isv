@@ -6,7 +6,7 @@ name: Release
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
 
@@ -38,3 +38,8 @@ jobs:
         run: |
           cd dist
           npm publish
+
+      - name: Sync
+        run: |
+          sleep 5s
+          npm run sync
