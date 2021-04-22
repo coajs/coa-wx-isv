@@ -5,7 +5,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/coa-wx-isv.svg?style=flat-square)](http://npm-stat.com/charts.html?package=coa-wx-isv)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/coajs/coa-wx-isv/pulls)
 
-一个超简单的微信SDK服务商版 for Node.js
+一个轻量的微信SDK服务商版 for Node.js
 
 ## 特点
 
