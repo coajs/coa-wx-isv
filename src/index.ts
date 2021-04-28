@@ -1,6 +1,5 @@
-export { WxIsv } from './typings'
-export { AuthScopes } from './libs/WxIsvConst'
 export { WxIsvBin } from './libs/WxIsvBin'
+export * from './libs/WxIsvConst'
 export { WxIsvStorage } from './libs/WxIsvStorage'
 export { WxIsvAuthService } from './services/WxIsvAuthService'
 export { WxIsvCategoryService } from './services/WxIsvCategoryService'
@@ -13,3 +12,5 @@ export { WxIsvStatService } from './services/WxIsvStatService'
 export { WxIsvSubscribeService } from './services/WxIsvSubscribeService'
 export { WxIsvTemplateService } from './services/WxIsvTemplateService'
 export { WxIsvTesterService } from './services/WxIsvTesterService'
+export { WxIsv } from './typings'
+
