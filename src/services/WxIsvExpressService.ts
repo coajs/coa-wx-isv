@@ -1,4 +1,4 @@
-import { die } from 'coa-error'
+import { CoaError } from 'coa-error'
 import { $, _ } from 'coa-helper'
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 import { WxIsv } from '../typings'
@@ -75,18 +75,15 @@ export class WxIsvExpressService extends WxIsvServiceBase {
     return await this.request('POST', '/cgi-bin/express/business/printer/update', param, { access_token: accessToken }) as WxIsv.WxIsvNormalResponse
   }
 
-  protected handleResponseError (res: WxIsv.AxiosResponse) {
+  protected handleCustomError (res: WxIsv.AxiosResponse) {
     const data = res.data || {}
-    let errorCode = _.toNumber(data.errcode) || 0
-    let errorMsg = this.errorMap[errorCode.toString()] || _.toString(data.errmsg) || '微信服务返回错误'
-    // 快递公司系统错误
-    if (data.errcode === 9300501) {
-      const error = data as WxIsv.WxIsvRawDeliveryErrorResponse
-      errorCode = error.delivery_resultcode
-      errorMsg = error.delivery_resultmsg
+    const errorCode = _.toNumber(data.errcode) || 0
+    // 快递公司系统错误，其他错误则执行默认操作
+    if (errorCode === 9300501) {
+      const code = data.delivery_resultcode || ''
+      const message = data.delivery_resultmsg || '快递公司未知错误'
+      CoaError.throw('WxIsvExpress.ExpressReturnError.' + code, message)
     }
-    return die.error(errorMsg, 400, errorCode)
   }
-
 }
 

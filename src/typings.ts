@@ -505,6 +505,15 @@ export declare namespace WxIsv {
     mutex: boolean,
     required?: boolean
   }
+
+  type ErrorMap = {
+    [errorNo: number]: string
+  }
+
+  interface Dic<T = any> {
+    [index: string]: T
+  }
+
   type WxIsvConfig = typeof wxIsvConfig
   type WxIsvTemplateItem = typeof wxIsvTemplateItem
   type WxIsvTemplateDraft = typeof wxIsvTemplateDraft
