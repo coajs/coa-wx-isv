@@ -17,7 +17,7 @@ export class WxIsvTokenService extends WxIsvServiceBase {
         component_appsecret: this.config.appSecret,
         component_verify_ticket: await this.getTicket()
       }
-      const data = await this.request('POST', '/cgi-bin/component/api_component_token', param)
+      const data = await this.request('POST', '/cgi-bin/component/api_component_token', param, {})
       const ms = _.toInteger(data.expiresIn) * 1e3 - 3 * 60 * 1e3
       result.expire = _.now() + ms
       result.token = data.componentAccessToken as string || ''

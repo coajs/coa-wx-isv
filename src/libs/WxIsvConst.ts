@@ -1,10 +1,6 @@
 import { WxIsv } from '../typings'
 
-interface Dic<T> {
-  [index: string]: T
-}
-
-export const AuthScopes = <Dic<WxIsv.WxIsvAuthItem>>{
+export const AuthScopes = <WxIsv.Dic<WxIsv.WxIsvAuthItem>>{
   17: {
     id: 17,
     name: '帐号管理权限',
