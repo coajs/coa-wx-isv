@@ -23,14 +23,14 @@ export class WxIsvBin {
   }
 
   // 请求并处理错误
-  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler) {
+  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
 
     // 错误配置
     const res = await axios.request({ baseURL, ...request }).catch(e => e)
 
     // 处理返回结果
     try {
-      return this.handleResponse(res, customErrorMessage, customErrorHandler)
+      return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
     }
     // 触发错误事件
     catch (e) {
@@ -39,12 +39,16 @@ export class WxIsvBin {
     }
   }
 
-  private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler) {
+  private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
 
     const data = res.data || {}
     const errorCode = _.toNumber(data.errcode) || 0
 
     if (errorCode) {
+      // 如果忽略某个错误，则直接返回
+      if (ignoreError.includes(errorCode)) {
+        return { ignore: errorCode }
+      }
       // 自定义错误处理
       customErrorHandler(res)
       // 默认错误处理
