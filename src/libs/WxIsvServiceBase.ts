@@ -12,8 +12,12 @@ export class WxIsvServiceBase {
     this.config = bin.config
   }
 
-  async request (method: WxIsv.AxiosMethod, url: string, data: {}, params: {}, config: WxIsv.AxiosRequestConfig = {}) {
-    return await this.bin.request({ method, url, params, data, ...config }, this.customErrorMessage, this.customErrorHandler)
+  async request (method: WxIsv.AxiosMethod, url: string, data: {}, params: {}, ignoreError: WxIsv.IgnoreError = []) {
+    return await this.bin.request({ method, url, params, data, }, this.customErrorMessage, this.customErrorHandler, ignoreError)
+  }
+
+  async requestStream (method: WxIsv.AxiosMethod, url: string, data: {}, params: {}, ignoreError: WxIsv.IgnoreError = []) {
+    return await this.bin.request({ method, url, params, data, responseType: 'stream' }, this.customErrorMessage, this.customErrorHandler, ignoreError)
   }
 
   protected customErrorHandler (res: WxIsv.AxiosResponse) {

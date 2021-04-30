@@ -512,6 +512,8 @@ export declare namespace WxIsv {
 
   type customErrorHandler = (res: Axios.AxiosResponse) => void
 
+  type IgnoreError = number[]
+
   interface Dic<T = any> {
     [index: string]: T
   }
