@@ -506,9 +506,11 @@ export declare namespace WxIsv {
     required?: boolean
   }
 
-  type ErrorMap = {
+  type customErrorMessage = {
     [errorNo: number]: string
   }
+
+  type customErrorHandler = (res: Axios.AxiosResponse) => void
 
   interface Dic<T = any> {
     [index: string]: T

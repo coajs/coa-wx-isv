@@ -1,11 +1,12 @@
 import { $ } from 'coa-helper'
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
+import { WxIsv } from '../typings'
 
-const ErrorMap = { '-1': '系统繁忙', '85074': '小程序未发布, 小程序必须先发布代码才可以发布二维码跳转规则', '85075': '个人类型小程序无法设置二维码规则' }
+const customErrorMessage: WxIsv.customErrorMessage = { '85074': '小程序未发布, 小程序必须先发布代码才可以发布二维码跳转规则', '85075': '个人类型小程序无法设置二维码规则' }
 
 export class WxIsvQrService extends WxIsvServiceBase {
 
-  errorMap = ErrorMap
+  customErrorMessage = customErrorMessage
 
   // 获取体验小程序的体验二维码
   async getCommitQrImage (accessToken: string, path: string) {
