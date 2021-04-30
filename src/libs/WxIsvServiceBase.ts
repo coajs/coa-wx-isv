@@ -1,12 +1,11 @@
 import { WxIsvBin } from '../libs/WxIsvBin'
 import { WxIsv } from '../typings'
 
-
 export class WxIsvServiceBase {
 
   protected readonly bin: WxIsvBin
   protected readonly config: WxIsv.WxIsvConfig
-  protected readonly errorMap: WxIsv.ErrorMap = {}
+  protected readonly customErrorMessage: WxIsv.customErrorMessage = {}
 
   constructor (bin: WxIsvBin) {
     this.bin = bin
@@ -14,10 +13,10 @@ export class WxIsvServiceBase {
   }
 
   async request (method: WxIsv.AxiosMethod, url: string, data: {}, params: {}, config: WxIsv.AxiosRequestConfig = {}) {
-    return await this.bin.request({ method, url, params, data, ...config }, this.errorMap, this.handleCustomError)
+    return await this.bin.request({ method, url, params, data, ...config }, this.customErrorMessage, this.customErrorHandler)
   }
 
-  protected handleCustomError (res: WxIsv.AxiosResponse) {
+  protected customErrorHandler (res: WxIsv.AxiosResponse) {
 
   }
 }

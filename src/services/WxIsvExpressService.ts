@@ -75,7 +75,7 @@ export class WxIsvExpressService extends WxIsvServiceBase {
     return await this.request('POST', '/cgi-bin/express/business/printer/update', param, { access_token: accessToken }) as WxIsv.WxIsvNormalResponse
   }
 
-  protected handleCustomError (res: WxIsv.AxiosResponse) {
+  protected customErrorHandler (res: WxIsv.AxiosResponse) {
     const data = res.data || {}
     const errorCode = _.toNumber(data.errcode) || 0
     // 快递公司系统错误，其他错误则执行默认操作

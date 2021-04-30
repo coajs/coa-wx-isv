@@ -1,9 +1,11 @@
 import { CoaError } from 'coa-error'
-import { $, Axios, axios, _ } from 'coa-helper'
+import { $, axios, _ } from 'coa-helper'
 import { WxIsv } from '../typings'
 import { WxIsvStorage } from './WxIsvStorage'
 
 const baseURL = 'https://api.weixin.qq.com'
+
+const DefaultCustomErrorMessage: WxIsv.customErrorMessage = { '-1': '微信系统繁忙，请重试' }
 
 export class WxIsvBin {
 
@@ -21,33 +23,36 @@ export class WxIsvBin {
   }
 
   // 请求并处理错误
-  async request (request: WxIsv.AxiosRequestConfig, errorMap: WxIsv.ErrorMap, handleCustomError: (res: Axios.AxiosResponse) => void) {
+  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler) {
 
     // 错误配置
     const res = await axios.request({ baseURL, ...request }).catch(e => e)
 
-    // 处理错误
+    // 处理返回结果
     try {
-      return this.handleResponse(res, errorMap)
-    } catch (e) {
-      // 触发错误事件
+      return this.handleResponse(res, customErrorMessage, customErrorHandler)
+    }
+    // 触发错误事件
+    catch (e) {
       this.onRequestError(e, res)
-      // 处理自定义错误
-      handleCustomError(res)
       throw e
     }
   }
 
-  // 处理返回结果
-  private handleResponse (res: WxIsv.AxiosResponse, errorMap: WxIsv.ErrorMap) {
+  private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler) {
+
     const data = res.data || {}
     const errorCode = _.toNumber(data.errcode) || 0
 
     if (errorCode) {
-      const errorMessage = errorMap[errorCode] || _.toString(data.errmsg) || '微信服务返回错误'
+      // 自定义错误处理
+      customErrorHandler(res)
+      // 默认错误处理
+      const errorMessage = customErrorMessage[errorCode] || DefaultCustomErrorMessage[errorCode] || _.toString(data.errmsg) || '微信服务返回错误'
       CoaError.throw('CoaWxIsv.WxReturnError', errorMessage)
     }
 
+    // 返回结果
     return _.isPlainObject(data) ? $.camelCaseKeys(data) : data
   }
 
