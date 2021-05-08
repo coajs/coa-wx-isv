@@ -1,11 +1,13 @@
 import { CoaError } from 'coa-error'
-import { $, axios, _ } from 'coa-helper'
+import { $, _, axios } from 'coa-helper'
 import { WxIsv } from '../typings'
 import { WxIsvStorage } from './WxIsvStorage'
 
 const baseURL = 'https://api.weixin.qq.com'
 
 const DefaultCustomErrorMessage: WxIsv.customErrorMessage = { '-1': '微信系统繁忙，请重试' }
+
+const RetryErrorCodes = [-1]
 
 export class WxIsvBin {
 
@@ -17,26 +19,37 @@ export class WxIsvBin {
     this.storage = storage || new WxIsvStorage()
   }
 
-  // 当错误时触发
-  protected onRequestError (error: Error, res: WxIsv.AxiosResponse): void {
-
-  }
-
   // 请求并处理错误
   async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
 
-    // 错误配置
-    const res = await axios.request({ baseURL, ...request }).catch(e => e)
+    let retryTimes = 0
+    let res = {} as any
+    let errorCode = 0
 
     // 处理返回结果
     try {
+
+      do {
+        res = await axios.request({ baseURL, ...request }).catch(e => e)
+        errorCode = _.toNumber(res.errcode) || 0
+        retryTimes++
+      } while (RetryErrorCodes.includes(errorCode) && retryTimes < 3)
+      {
+        await $.timeout(500)
+      }
+
       return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
     }
-    // 触发错误事件
+      // 触发错误事件
     catch (e) {
       this.onRequestError(e, res)
       throw e
     }
+  }
+
+  // 当错误时触发
+  protected onRequestError (error: Error, res: WxIsv.AxiosResponse): void {
+
   }
 
   private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
