@@ -35,7 +35,7 @@ export class WxIsvBin {
         retryTimes++
       } while (RetryErrorCodes.includes(errorCode) && retryTimes < 3)
       {
-        await $.timeout(500)
+        await $.timeout(300 * retryTimes)
       }
 
       return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
