@@ -1,5 +1,5 @@
 import { CoaError } from 'coa-error'
-import { $, axios, _ } from 'coa-helper'
+import { $, _, axios } from 'coa-helper'
 import { WxIsv } from '../typings'
 import { WxIsvStorage } from './WxIsvStorage'
 
@@ -17,13 +17,8 @@ export class WxIsvBin {
     this.storage = storage || new WxIsvStorage()
   }
 
-  // 当错误时触发
-  protected onRequestError (error: Error, res: WxIsv.AxiosResponse): void {
-
-  }
-
   // 请求并处理错误
-  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
+  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError, retryTimes = 0): Promise<any> {
 
     // 错误配置
     const res = await axios.request({ baseURL, ...request }).catch(e => e)
@@ -31,12 +26,22 @@ export class WxIsvBin {
     // 处理返回结果
     try {
       return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
-    }
-    // 触发错误事件
-    catch (e) {
+    } catch (e) {
+      // 触发重试机制
+      if (e.code === 'CoaWxIsv.WxReturnError.-1' && retryTimes < 3) {
+        retryTimes++
+        await $.timeout(retryTimes * 200)
+        return await this.request(request, customErrorMessage, customErrorHandler, ignoreError, retryTimes)
+      }
+      // 触发错误事件
       this.onRequestError(e, res)
       throw e
     }
+  }
+
+  // 当错误时触发
+  protected onRequestError (error: Error, res: WxIsv.AxiosResponse): void {
+
   }
 
   private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
@@ -53,7 +58,7 @@ export class WxIsvBin {
       customErrorHandler(res)
       // 默认错误处理
       const errorMessage = customErrorMessage[errorCode] || DefaultCustomErrorMessage[errorCode] || _.toString(data.errmsg) || '微信服务返回错误'
-      CoaError.throw('CoaWxIsv.WxReturnError', errorMessage)
+      CoaError.throw('CoaWxIsv.WxReturnError.' + errorCode, errorMessage)
     }
 
     // 返回结果
