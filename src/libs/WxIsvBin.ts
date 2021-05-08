@@ -31,12 +31,9 @@ export class WxIsvBin {
 
       do {
         res = await axios.request({ baseURL, ...request }).catch(e => e)
-        errorCode = _.toNumber(res.errcode) || 0
+        errorCode = _.toNumber(res.data?.errcode) || 0
         retryTimes++
-      } while (RetryErrorCodes.includes(errorCode) && retryTimes < 3)
-      {
-        await $.timeout(300 * retryTimes)
-      }
+      } while (RetryErrorCodes.includes(errorCode) && retryTimes <= 3)
 
       return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
     }
