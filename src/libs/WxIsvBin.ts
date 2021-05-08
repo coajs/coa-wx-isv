@@ -26,16 +26,14 @@ export class WxIsvBin {
     // 处理返回结果
     try {
       return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
-    }
-      // 触发错误事件
-    catch (e) {
-
-      if (retryTimes < 3 && e.code === 'CoaWxIsv.WxReturnError.-1') {
+    } catch (e) {
+      // 触发重试机制
+      if (e.code === 'CoaWxIsv.WxReturnError.-1' && retryTimes < 3) {
         retryTimes++
         await $.timeout(retryTimes * 200)
         return await this.request(request, customErrorMessage, customErrorHandler, ignoreError, retryTimes)
       }
-
+      // 触发错误事件
       this.onRequestError(e, res)
       throw e
     }
