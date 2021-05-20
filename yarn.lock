@@ -3,14 +3,14 @@
 
 
 "@types/lodash@^4.14.168":
-  version "4.14.168"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
-  integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
+  version "4.14.169"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.169.tgz#83c217688f07a4d9ef8f28a3ebd1d318f6ff4cbb"
+  integrity sha512-DvmZHoHTFJ8zhVYwCLWbQ7uAbYQEk52Ev2/ZiQ7Y7gQGeV9pjBqjnQpECMHfKS1rCYAhMI7LHVxwyZLZinJgdw==
 
-"@types/node@*", "@types/node@^14.14.41":
-  version "14.14.41"
-  resolved "https://registry.npmjs.org/@types/node/-/node-14.14.41.tgz#d0b939d94c1d7bd53d04824af45f1139b8c45615"
-  integrity sha512-dueRKfaJL4RTtSa7bWeTK1M+VH+Gns73oCgzvYfHZywRCoPSd8EkXBL0mZ9unPTveBn+D9phZBaxuzpwjWkW0g==
+"@types/node@*", "@types/node@^15.3.1":
+  version "15.3.1"
+  resolved "https://registry.npmjs.org/@types/node/-/node-15.3.1.tgz#23a06b87eedb524016616e886b116b8fdcb180af"
+  integrity sha512-weaeiP4UF4XgF++3rpQhpIJWsCTS4QJw5gvBhQu6cFIxTwyxWIe3xbnrY/o2lTCQ0lsdb8YIUDUvLR4Vuz5rbw==
 
 "@types/xml2js@^0.4.8":
   version "0.4.8"
@@ -31,10 +31,10 @@ coa-echo@^1.0.8:
   resolved "https://registry.npmjs.org/coa-echo/-/coa-echo-1.0.8.tgz#0347b947d37d68d03b9058f822dc0f65499210a8"
   integrity sha512-0ap+N+merkETH4QzP81GTUv96t7SWfwiYrhhxW+kmR6Te7GculaklomRsmgBN//5lIif5Gd/OCt8l8r7igrfMA==
 
-coa-error@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.npmjs.org/coa-error/-/coa-error-1.1.3.tgz#4acce65aca25273eb474ce16454ef7cb84b07401"
-  integrity sha512-StJ7Qepm9UZ4DMbxTzPCdmdT/9M0Czl0hKZ/OlORMYWJJctxV0rjyE8DBet7wyEwnQjO8Sk3NU6jr7kXx9SVVw==
+coa-error@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.npmjs.org/coa-error/-/coa-error-1.5.2.tgz#08fddfac967a80e1ce9e334e0d1b02e73113ca19"
+  integrity sha512-PSuUF78YmXnPYtWJQM+BesGhYbrRdt3sF4NbBrIRY9Wx0Zmdpd8pbk4brKZvUhbyLw+SfYiIB4I3EB7Qgq9VoA==
 
 coa-helper@^1.1.1:
   version "1.1.1"
@@ -61,9 +61,9 @@ dayjs@^1.10.4:
   integrity sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
 
 follow-redirects@^1.10.0:
-  version "1.13.3"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
-  integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
+  version "1.14.1"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
+  integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
 
 hashids@^2.2.8:
   version "2.2.8"
