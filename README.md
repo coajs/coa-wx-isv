@@ -5,7 +5,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/coa-wx-isv.svg?style=flat-square)](http://npm-stat.com/charts.html?package=coa-wx-isv)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/coajs/coa-wx-isv/pulls)
 
-一个轻量的微信SDK服务商版 for Node.js
+一个轻量的微信 SDK 服务商版 for Node.js
 
 ## 特点
 
@@ -13,7 +13,7 @@
 
 - 覆盖了绝大多数使用场景
 - 统一了异步表现形式，全部返回 Promise
-- 内置类型引用，无需额外查看文档，开箱即用，IDE友好
+- 内置类型引用，无需额外查看文档，开箱即用，IDE 友好
 
 ## 快速开始
 
@@ -53,7 +53,7 @@ import { WxIsvDomainService, WxIsvBin } from 'coa-wx-isv'
 // 自定义bin实例
 class MyWxIsvBin extends WxIsvBin {
   // 自定义请求异常的事件
-  onRequestError (error, res) {
+  onRequestError(error, res) {
     // 在这里记录错误
     console.log(error)
     console.log(res)
@@ -67,8 +67,8 @@ const myBin = new MyWxIsvBin(config)
 const domainService = new WxIsvDomainService(myBin)
 
 // 调用服务
-domainService.setBiz('accessToken', 'domian')
+await domainService.setBiz('accessToken', 'domian')
 
 // 错误地调用服务
-domainService.setBiz('', '') // onRequestError 会记录这条错误信息
+await domainService.setBiz('', '') // onRequestError 会记录这条错误信息
 ```

@@ -1,5 +1,5 @@
 import { CoaError } from 'coa-error'
-import { $, _, axios } from 'coa-helper'
+import { $, axios, _ } from 'coa-helper'
 import { WxIsv } from '../typings'
 import { WxIsvStorage } from './WxIsvStorage'
 
@@ -8,20 +8,24 @@ const baseURL = 'https://api.weixin.qq.com'
 const DefaultCustomErrorMessage: WxIsv.customErrorMessage = { '-1': '微信系统繁忙，请重试' }
 
 export class WxIsvBin {
-
   readonly config: WxIsv.WxIsvConfig
   readonly storage: WxIsvStorage
 
-  constructor (config: WxIsv.WxIsvConfig, storage?: WxIsvStorage) {
+  constructor(config: WxIsv.WxIsvConfig, storage?: WxIsvStorage) {
     this.config = config
-    this.storage = storage || new WxIsvStorage()
+    this.storage = storage ?? new WxIsvStorage()
   }
 
   // 请求并处理错误
-  async request (request: WxIsv.AxiosRequestConfig, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError, retryTimes = 0): Promise<any> {
-
+  async request(
+    request: WxIsv.AxiosRequestConfig,
+    customErrorMessage: WxIsv.customErrorMessage,
+    customErrorHandler: WxIsv.customErrorHandler,
+    ignoreError: WxIsv.IgnoreError,
+    retryTimes = 0
+  ): Promise<any> {
     // 错误配置
-    const res = await axios.request({ baseURL, ...request }).catch(e => e)
+    const res = await axios.request({ baseURL, ...request }).catch((e) => e)
 
     // 处理返回结果
     try {
@@ -40,12 +44,14 @@ export class WxIsvBin {
   }
 
   // 当错误时触发
-  protected onRequestError (error: Error, res: WxIsv.AxiosResponse): void {
+  protected onRequestError(_error: Error, _res: WxIsv.AxiosResponse): void {}
 
-  }
-
-  private handleResponse (res: WxIsv.AxiosResponse, customErrorMessage: WxIsv.customErrorMessage, customErrorHandler: WxIsv.customErrorHandler, ignoreError: WxIsv.IgnoreError) {
-
+  private handleResponse(
+    res: WxIsv.AxiosResponse,
+    customErrorMessage: WxIsv.customErrorMessage,
+    customErrorHandler: WxIsv.customErrorHandler,
+    ignoreError: WxIsv.IgnoreError
+  ) {
     const data = res.data || {}
     const errorCode = _.toNumber(data.errcode) || 0
 
@@ -64,5 +70,4 @@ export class WxIsvBin {
     // 返回结果
     return _.isPlainObject(data) ? $.camelCaseKeys(data) : data
   }
-
 }

@@ -18,12 +18,10 @@ const authService = new WxIsvAuthService(bin)
 // 调用服务
 await authService.getAuthInfoByCode('code')
 
-
-
 // 自定义bin实例
 class MyWxIsvBin extends WxIsvBin {
   // 自定义请求异常的事件
-  onRequestError (error, res) {
+  onRequestError(error, res) {
     // 在这里记录错误
     console.log(error)
     console.log(res)
@@ -37,7 +35,7 @@ const myBin = new MyWxIsvBin(config)
 const domainService = new WxIsvDomainService(myBin)
 
 // 调用服务
-domainService.setBiz('accessToken', 'domian')
+await domainService.setBiz('accessToken', 'domian')
 
 // 错误地调用服务
-domainService.setBiz('', '') // onRequestError 会记录这条错误信息
+await domainService.setBiz('', '') // onRequestError 会记录这条错误信息

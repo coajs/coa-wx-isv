@@ -13,4 +13,3 @@ export { WxIsvSubscribeService } from './services/WxIsvSubscribeService'
 export { WxIsvTemplateService } from './services/WxIsvTemplateService'
 export { WxIsvTesterService } from './services/WxIsvTesterService'
 export { WxIsv } from './typings'
-
