@@ -481,6 +481,29 @@ const wxIsvTicketResponse = {
   expiresIn: 7200,
 }
 
+const wxIsvMpShowItem = {
+  errcode: 0,
+  errmsg: 'ok',
+  can_open: 1,
+  is_open: 1,
+  appid: '展示的公众号appid',
+  nickname: '展示的公众号nickname',
+  headimg: '展示的公众号头像',
+}
+
+const wxIsvMpShowItemList = {
+  errcode: 0,
+  errmsg: 'ok',
+  total_num: 10,
+  biz_info_list: [
+    {
+      nickname: '公众号昵称',
+      appid: '公众号appid',
+      headimg: '公众号头像',
+    },
+  ],
+}
+
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
@@ -542,4 +565,6 @@ export declare namespace WxIsv {
   type WxIsvAddTemplateResponse = typeof wxIsvAddTemplateResponse
   type WxIsvTmplKeywordResponse = typeof wxIsvTmplKeywordResponse
   type WxIsvTicket = typeof wxIsvTicketResponse
+  type WxIsvMpShowItem = typeof wxIsvMpShowItem
+  type WxIsvMpShowItemList = typeof wxIsvMpShowItemList
 }
