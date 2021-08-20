@@ -17,10 +17,11 @@
     "url": "https://github.com/coajs/coa-wx-isv.git"
   },
   "scripts": {
-    "dev": "tsc -w",
+    "tsc": "tsc -w",
     "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
     "lint": "eslint . ",
     "prettier": "prettier -w .",
+    "play": "node dist/test/play",
     "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-wx-isv?sync_upstream=true'"
   },
   "dependencies": {
