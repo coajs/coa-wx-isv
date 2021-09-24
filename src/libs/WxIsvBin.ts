@@ -37,7 +37,7 @@ export class WxIsvBin {
         customErrorHandler,
         ignoreError
       )
-    } catch (e) {
+    } catch (e: any) {
       // 触发重试机制
       if (e.code === 'CoaWxIsv.WxReturnError.-1' && retryTimes < 3) {
         retryTimes++
