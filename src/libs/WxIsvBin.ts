@@ -44,7 +44,10 @@ export class WxIsvBin {
   }
 
   // 当错误时触发
-  protected onRequestError(_error: Error, _res: WxIsv.AxiosResponse): void {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected onRequestError(error: Error, res: WxIsv.AxiosResponse): void {
+    // do something when error
+  }
 
   private handleResponse(
     res: WxIsv.AxiosResponse,

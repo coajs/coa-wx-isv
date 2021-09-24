@@ -31,7 +31,7 @@ export class WxIsvSubscribeService extends WxIsvServiceBase {
       data,
       miniProgramState,
       page,
-    }: { openId: string; templateId: string; data: {}; miniProgramState: 'developer' | 'trial' | 'formal'; page: string }
+    }: { openId: string; templateId: string; data: Record<string, any>; miniProgramState: 'developer' | 'trial' | 'formal'; page: string }
   ) {
     const params = { touser: openId, template_id: templateId, page, miniprogram_state: miniProgramState, data, lang: 'zh_CN' }
     return (await this.request('POST', '/cgi-bin/message/subscribe/send', params, { access_token: accessToken })) as WxIsv.WxIsvNormalResponse

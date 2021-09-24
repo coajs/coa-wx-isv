@@ -4,14 +4,14 @@ import { WxIsvTokenService } from '../services/WxIsvTokenService'
 import { WxIsv } from '../typings'
 
 const wxImage = new (class {
-  encode(uri: string = '') {
+  encode(uri = '') {
     return _.toString(uri)
       .replace(/https?:\/\//, 'bs_wx/')
       .replace(/\/\d{1,3}$/, '')
       .replace(/\/$/, '')
   }
 
-  decode(uri: string = '') {
+  decode(uri = '') {
     uri = _.toString(uri)
       .replace(/^bs_wx\//, '')
       .replace(/\/\d{1,3}$/, '')

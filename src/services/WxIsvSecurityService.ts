@@ -18,7 +18,9 @@ export class WxIsvSecurityService extends WxIsvServiceBase {
       let decoded = decipher.update(encryptedData, 'base64', 'utf8')
       try {
         decoded += decipher.final('utf8')
-      } catch (e) {}
+      } catch (e) {
+        // do nothing
+      }
       decoded = decoded.replace(/[\s\S]*(<xml>[\s\S]*<\/xml>)[\s\S]*/, '$1')
       result = await xml.decode(decoded)
     } catch (e) {
