@@ -35,15 +35,33 @@ export class WxIsvAuthService extends WxIsvTokenService {
   // 使用授权码换取公众号或小程序的接口调用凭据和授权信息
   async getAuthInfoByCode(authorization_code: string) {
     const body = { component_appid: this.config.appId, authorization_code }
-    const result = await this.request('POST', '/cgi-bin/component/api_query_auth', body, { component_access_token: await this.getToken() })
-    return (result.authorizationInfo as WxIsv.WxIsvAuthInfo) || die.hint('authorizationInfo缺失')
+    const result = await this.request(
+      'POST',
+      '/cgi-bin/component/api_query_auth',
+      body,
+      { component_access_token: await this.getToken() }
+    )
+    return (
+      (result.authorizationInfo as WxIsv.WxIsvAuthInfo) ||
+      die.hint('authorizationInfo缺失')
+    )
   }
 
   // 获取授权小程序的基本信息
   async getAppInfo(appWxaId: string) {
-    const body = { component_appid: this.config.appId, authorizer_appid: appWxaId }
-    const result = await this.request('POST', '/cgi-bin/component/api_get_authorizer_info', body, { component_access_token: await this.getToken() })
-    const appInfo = (result.authorizerInfo as WxIsv.WxIsvAuthAppInfo) || die.hint('authorizerInfo缺失')
+    const body = {
+      component_appid: this.config.appId,
+      authorizer_appid: appWxaId,
+    }
+    const result = await this.request(
+      'POST',
+      '/cgi-bin/component/api_get_authorizer_info',
+      body,
+      { component_access_token: await this.getToken() }
+    )
+    const appInfo =
+      (result.authorizerInfo as WxIsv.WxIsvAuthAppInfo) ||
+      die.hint('authorizerInfo缺失')
 
     appInfo.nickname = appInfo.nickName
     delete (appInfo as any).nickName
@@ -54,15 +72,29 @@ export class WxIsvAuthService extends WxIsvTokenService {
 
   // 获取授权小程序账号的基本信息
   async getAccountBasicInfo(accessToken: string) {
-    return (await this.request('GET', '/cgi-bin/account/getaccountbasicinfo', {}, { access_token: accessToken })) as WxIsv.WxIsvAuthAccountInfo
+    return (await this.request(
+      'GET',
+      '/cgi-bin/account/getaccountbasicinfo',
+      {},
+      { access_token: accessToken }
+    )) as WxIsv.WxIsvAuthAccountInfo
   }
 
   // 刷新小程序的接口调用凭据（令牌）
   async refreshAppTokenInfo(appWxaId: string, refresh_token: string) {
-    const body = { component_appid: this.config.appId, authorizer_appid: appWxaId, authorizer_refresh_token: refresh_token }
-    return (await this.request('POST', '/cgi-bin/component/api_authorizer_token', body, {
-      component_access_token: await this.getToken(),
-    })) as WxIsv.WxIsvAuthRefreshInfo
+    const body = {
+      component_appid: this.config.appId,
+      authorizer_appid: appWxaId,
+      authorizer_refresh_token: refresh_token,
+    }
+    return (await this.request(
+      'POST',
+      '/cgi-bin/component/api_authorizer_token',
+      body,
+      {
+        component_access_token: await this.getToken(),
+      }
+    )) as WxIsv.WxIsvAuthRefreshInfo
   }
 
   // 小程序登录
@@ -73,14 +105,25 @@ export class WxIsvAuthService extends WxIsvTokenService {
       'GET',
       '/sns/component/jscode2session',
       {},
-      { appid: appId, js_code, grant_type: 'grant_type', component_access_token, component_appid }
+      {
+        appid: appId,
+        js_code,
+        grant_type: 'grant_type',
+        component_access_token,
+        component_appid,
+      }
     )) as { openid: string; sessionKey: string }
   }
 
   // 获取预授权码pre_auth_code
   private async createPreAuthCode() {
     const body = { component_appid: this.config.appId }
-    const result = await this.request('POST', '/cgi-bin/component/api_create_preauthcode', body, { component_access_token: await this.getToken() })
+    const result = await this.request(
+      'POST',
+      '/cgi-bin/component/api_create_preauthcode',
+      body,
+      { component_access_token: await this.getToken() }
+    )
     return (result.preAuthCode as string) || ''
   }
 }

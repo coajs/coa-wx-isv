@@ -25,13 +25,21 @@ const wxIsvTemplateItem = {
 const wxIsvAuthAppInfo = {
   nickName: 'GlobalOnline',
   nickname: 'GlobalOnline', // tricky code for nickname
-  headImg: 'http://wx.qlogo.cn/mmopen/wJibWkqN1bUOFG4jM2iagmicaSrtPx6hSzC6y18BLlkXKGTujpO9uvombpB93036Iqxucewm4uNAIQbmfMtgL3cHIbmJGYj4BDa/0',
+  headImg:
+    'http://wx.qlogo.cn/mmopen/wJibWkqN1bUOFG4jM2iagmicaSrtPx6hSzC6y18BLlkXKGTujpO9uvombpB93036Iqxucewm4uNAIQbmfMtgL3cHIbmJGYj4BDa/0',
   serviceTypeInfo: { id: 0 },
   verifyTypeInfo: { id: -1 },
   userName: 'gh_6bcdd8bb8979',
   alias: '',
-  qrcodeUrl: 'http://mmbiz.qpic.cn/mmbiz_jpg/Cb87DbpM22ShERPmncaEWlEnOujXaH55nkbc6ia2z2UN5ekq8rclaSiaZwcribicRXpZ1NZmRBPhNBjILSbtD2Otgw/0',
-  businessInfo: { openPay: 0, openShake: 0, openScan: 0, openCard: 0, openStore: 0 },
+  qrcodeUrl:
+    'http://mmbiz.qpic.cn/mmbiz_jpg/Cb87DbpM22ShERPmncaEWlEnOujXaH55nkbc6ia2z2UN5ekq8rclaSiaZwcribicRXpZ1NZmRBPhNBjILSbtD2Otgw/0',
+  businessInfo: {
+    openPay: 0,
+    openShake: 0,
+    openScan: 0,
+    openCard: 0,
+    openStore: 0,
+  },
   idc: 1,
   principalName: '个人',
   signature: 'RPG game. Create your charactor, Then keep growing up.',
@@ -195,7 +203,8 @@ const wxIsvDomainModify = {
 
 const wxIsvAuthInfo = {
   authorizerAppid: 'wxf8b4f85f3a794e77',
-  authorizerAccessToken: 'QXjUqNqfYVH0yBE1iI_7vuN_9gQbpjfK7hYwJ3P7xOa88a89-Aga5x1NMYJyB8G2yKt1KCl0nPC3W9GJzw0Zzq_dBxc8pxIGUNi_bFes0qM',
+  authorizerAccessToken:
+    'QXjUqNqfYVH0yBE1iI_7vuN_9gQbpjfK7hYwJ3P7xOa88a89-Aga5x1NMYJyB8G2yKt1KCl0nPC3W9GJzw0Zzq_dBxc8pxIGUNi_bFes0qM',
   expiresIn: 7200,
   authorizerRefreshToken: 'dTo-YCXPL4llX-u1W1pPpnp8Hgm4wpJtlR6iV0doKdY',
   funcInfo: [
@@ -238,7 +247,8 @@ const wxIsvAuthAccountInfo = {
     modifyQuota: 5,
   },
   headImageInfo: {
-    headImageUrl: 'http://mmbiz.qpic.cn/mmbiz/a5icZrUmbV8p5jb6RZ8aYfjfS2AVle8URwBt8QIu6XbGewB9wiaWYWkPwq4R7pfdsFibuLkic16UcxDSNYtB8HnC1Q/0',
+    headImageUrl:
+      'http://mmbiz.qpic.cn/mmbiz/a5icZrUmbV8p5jb6RZ8aYfjfS2AVle8URwBt8QIu6XbGewB9wiaWYWkPwq4R7pfdsFibuLkic16UcxDSNYtB8HnC1Q/0',
     modifyUsedCount: 3,
     modifyQuota: 5,
   },
@@ -271,7 +281,8 @@ const wxIsvExpressBatchGetOrderResponse = {
       orderId: '01234567890123456789',
       deliveryId: 'SF',
       waybillId: '123456789',
-      printHtml: 'jh7DjipP4ul4CQYUh69cniskrQZuOPwa1inAbXIqKbU0t71c0s65Au54cdWBZW0QJY4LYeofdM',
+      printHtml:
+        'jh7DjipP4ul4CQYUh69cniskrQZuOPwa1inAbXIqKbU0t71c0s65Au54cdWBZW0QJY4LYeofdM',
       waybillData: [
         {
           key: 'SF_bagAddr',
@@ -320,7 +331,8 @@ const wxIsvAddOrderParam = {
   },
   shop: {
     wxaPath: '/index/index?from=waybill&id=01234567890123456789',
-    imgUrl: 'https://mmbiz.qpic.cn/mmbiz_png/OiaFLUqewuIDNQnTiaCInIG8ibdosYHhQHPbXJUrqYSNIcBL60vo4LIjlcoNG1QPkeH5GWWEB41Ny895CokeAah8A/640',
+    imgUrl:
+      'https://mmbiz.qpic.cn/mmbiz_png/OiaFLUqewuIDNQnTiaCInIG8ibdosYHhQHPbXJUrqYSNIcBL60vo4LIjlcoNG1QPkeH5GWWEB41Ny895CokeAah8A/640',
     goodsName: '微信气泡狗抱枕&微信气泡狗钥匙扣',
     goodsCount: 2,
   },
@@ -392,7 +404,8 @@ const wxIsvGetAllAccountDelivery = {
 }
 
 const wxIsvGetOrderResponse = {
-  printHtml: 'jh7DjipP4ul4CQYUh69cniskrQZuOPwa1inAbXIqKbU0t71c0s65Au54cdWBZW0QJY4LYeofdM',
+  printHtml:
+    'jh7DjipP4ul4CQYUh69cniskrQZuOPwa1inAbXIqKbU0t71c0s65Au54cdWBZW0QJY4LYeofdM',
   waybillData: [
     {
       key: 'SF_bagAddr',
@@ -477,7 +490,8 @@ const wxIsvTmplKeywordResponse = {
 const wxIsvTicketResponse = {
   errcode: 0,
   errmsg: 'ok',
-  ticket: 'bxLdikRXVbTPdHSM05e5u5sUoXNKd8-41ZO3MhKoyN5OfkWITDGgnr2fwJ0m9E8NYzWKVZvdVtaUgWvsdshFKA',
+  ticket:
+    'bxLdikRXVbTPdHSM05e5u5sUoXNKd8-41ZO3MhKoyN5OfkWITDGgnr2fwJ0m9E8NYzWKVZvdVtaUgWvsdshFKA',
   expiresIn: 7200,
 }
 
@@ -551,7 +565,8 @@ export declare namespace WxIsv {
   type WxIsvAuthAccountInfo = typeof wxIsvAuthAccountInfo
   type WxIsvAuthRefreshInfo = typeof wxIsvAuthRefreshInfo
   type WxIsvExpressBatchGetOrder = typeof wxIsvExpressBatchGetOrder
-  type WxIsvExpressBatchGetOrderResponse = typeof wxIsvExpressBatchGetOrderResponse
+  type WxIsvExpressBatchGetOrderResponse =
+    typeof wxIsvExpressBatchGetOrderResponse
   type WxIsvAddOrderParam = typeof wxIsvAddOrderParam
   type WxIsvCancelOrderResponse = typeof wxIsvCancelOrderResponse
   type WxIsvGetAllAccountResponse = typeof wxIsvGetAllAccountResponse

@@ -15,14 +15,21 @@ interface IsvVerifyTicket {
 export class WxIsvTokenService extends WxIsvServiceBase {
   // 获取accessToken
   async getToken() {
-    const result = (await this.bin.storage.get<IsvAccessToken>(ISV_ACCESS_TOKEN)) ?? { token: '', expire: 0 }
+    const result = (await this.bin.storage.get<IsvAccessToken>(
+      ISV_ACCESS_TOKEN
+    )) ?? { token: '', expire: 0 }
     if (!result.token) {
       const param = {
         component_appid: this.config.appId,
         component_appsecret: this.config.appSecret,
         component_verify_ticket: await this.getTicket(),
       }
-      const data = await this.request('POST', '/cgi-bin/component/api_component_token', param, {})
+      const data = await this.request(
+        'POST',
+        '/cgi-bin/component/api_component_token',
+        param,
+        {}
+      )
       const ms = _.toInteger(data.expiresIn) * 1e3 - 3 * 60 * 1e3
       result.expire = _.now() + ms
       result.token = (data.componentAccessToken as string) || ''
@@ -34,7 +41,9 @@ export class WxIsvTokenService extends WxIsvServiceBase {
 
   // 获取ticket
   async getTicket() {
-    const result = (await this.bin.storage.get<IsvVerifyTicket>(ISV_VERIFY_TICKET)) ?? { ticket: '', expire: 1 }
+    const result = (await this.bin.storage.get<IsvVerifyTicket>(
+      ISV_VERIFY_TICKET
+    )) ?? { ticket: '', expire: 1 }
     return result.ticket
   }
 

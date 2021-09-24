@@ -16,7 +16,11 @@ export default async () => {
   const token = 'XXXXXXXXX'
 
   // 调用服务
-  const { urlLink } = await service.generateUnlimited(token, 'activity/szgy/home', 'activityId=szgy-mao-1&sourceId=sms0820')
+  const { urlLink } = await service.generateUnlimited(
+    token,
+    'activity/szgy/home',
+    'activityId=szgy-mao-1&sourceId=sms0820'
+  )
 
   console.log({ urlLink })
 }

@@ -9,7 +9,12 @@ export class WxIsvMpService extends WxIsvServiceBase {
    * @param accessToken 小程序接口调用令牌
    */
   async getShowItem(accessToken: string) {
-    return (await this.request('GET', '/wxa/getshowwxaitem', {}, { access_token: accessToken })) as WxIsv.WxIsvMpShowItem
+    return (await this.request(
+      'GET',
+      '/wxa/getshowwxaitem',
+      {},
+      { access_token: accessToken }
+    )) as WxIsv.WxIsvMpShowItem
   }
 
   /**
@@ -21,7 +26,12 @@ export class WxIsvMpService extends WxIsvServiceBase {
    * @param num 每页记录数，最大为 20
    */
   async getShowItemList(accessToken: string, page = 0, num = 20) {
-    return (await this.request('GET', '/wxa/getwxamplinkforshow', {}, { page, num, access_token: accessToken })) as WxIsv.WxIsvMpShowItemList
+    return (await this.request(
+      'GET',
+      '/wxa/getwxamplinkforshow',
+      {},
+      { page, num, access_token: accessToken }
+    )) as WxIsv.WxIsvMpShowItemList
   }
 
   /**

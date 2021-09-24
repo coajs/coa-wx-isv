@@ -5,7 +5,9 @@ import { WxIsvStorage } from './WxIsvStorage'
 
 const baseURL = 'https://api.weixin.qq.com'
 
-const DefaultCustomErrorMessage: WxIsv.customErrorMessage = { '-1': '微信系统繁忙，请重试' }
+const DefaultCustomErrorMessage: WxIsv.customErrorMessage = {
+  '-1': '微信系统繁忙，请重试',
+}
 
 export class WxIsvBin {
   readonly config: WxIsv.WxIsvConfig
@@ -29,13 +31,24 @@ export class WxIsvBin {
 
     // 处理返回结果
     try {
-      return this.handleResponse(res, customErrorMessage, customErrorHandler, ignoreError)
+      return this.handleResponse(
+        res,
+        customErrorMessage,
+        customErrorHandler,
+        ignoreError
+      )
     } catch (e) {
       // 触发重试机制
       if (e.code === 'CoaWxIsv.WxReturnError.-1' && retryTimes < 3) {
         retryTimes++
         await $.timeout(retryTimes * 200)
-        return await this.request(request, customErrorMessage, customErrorHandler, ignoreError, retryTimes)
+        return await this.request(
+          request,
+          customErrorMessage,
+          customErrorHandler,
+          ignoreError,
+          retryTimes
+        )
       }
       // 触发错误事件
       this.onRequestError(e, res)
@@ -66,7 +79,11 @@ export class WxIsvBin {
       // 自定义错误处理
       customErrorHandler(res)
       // 默认错误处理
-      const errorMessage = customErrorMessage[errorCode] || DefaultCustomErrorMessage[errorCode] || _.toString(data.errmsg) || '微信服务返回错误'
+      const errorMessage =
+        customErrorMessage[errorCode] ||
+        DefaultCustomErrorMessage[errorCode] ||
+        _.toString(data.errmsg) ||
+        '微信服务返回错误'
       CoaError.throw('CoaWxIsv.WxReturnError.' + errorCode, errorMessage)
     }
 
