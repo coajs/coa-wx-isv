@@ -543,6 +543,10 @@ export declare namespace WxIsv {
   interface Dic<T = any> {
     [index: string]: T
   }
+  interface WxIsvResponse {
+    errcode: number
+    errmsg: string
+  }
 
   type WxIsvConfig = typeof wxIsvConfig
   type WxIsvTemplateItem = typeof wxIsvTemplateItem
