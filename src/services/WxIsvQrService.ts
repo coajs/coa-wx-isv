@@ -47,6 +47,16 @@ export class WxIsvQrService extends WxIsvServiceBase {
     )
   }
 
+  // 获取小程序的二维码（有数量限制）
+  async getWxaQrCodeLimited(accessToken: string, data: { path: string }) {
+    return await this.requestStream(
+      'POST',
+      '/cgi-bin/wxaapp/createwxaqrcode',
+      { width: 1280, ...data },
+      { access_token: accessToken }
+    )
+  }
+
   // 获取已设置的二维码规则
   async list(accessToken: string) {
     return await this.request(
