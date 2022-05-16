@@ -20,27 +20,27 @@ interface SettingItem {
 interface WxIsvPrivacySettingResponse {
   errcode: number
   errmsg: string
-  code_exist: number
-  privacy_list: string[]
-  setting_list: {
-    privacy_key: string
-    privacy_text: string
-    privacy_label: string
+  codeExist: number
+  privacyList: string[]
+  settingList: {
+    privacyKey: string
+    privacyText: string
+    privacyLabel: string
   }[]
-  update_time: number
-  owner_setting: {
-    contact_phone: string
-    contact_email: string
-    contact_qq: string
-    contact_weixin: string
-    store_expire_timestamp: string
-    ext_file_media_id: string
-    notice_method: string
+  updateTime: number
+  ownerSetting: {
+    contactPhone: string
+    contactEmail: string
+    contactQq: string
+    contactWeixin: string
+    storeExpireTimestamp: string
+    extFileMediaId: string
+    noticeMethod: string
   }
-  privacy_desc: {
-    privacy_desc_list: {
-      privacy_key: string
-      privacy_desc: string
+  privacyDesc: {
+    privacyDescList: {
+      privacyKey: string
+      privacyDesc: string
     }[]
   }
 }
@@ -48,21 +48,21 @@ interface WxIsvPrivacySettingResponse {
 interface WxIsvPrivacyInterfaceResponse {
   errcode: number
   errmsg: string
-  interface_list: {
-    api_name: string
-    api_ch_name: string
-    api_desc: string
+  interfaceList: {
+    apiName: string
+    apiChName: string
+    apiDesc: string
     status: number
-    api_link: string
-    group_name: string
-    apply_time?: undefined
-    audit_id?: undefined
-    fail_reason?: undefined
+    apiLink: string
+    groupName: string
+    applyTime?: undefined
+    auditId?: undefined
+    failReason?: undefined
   }[]
 }
 
 interface WxIsvApplyPrivacyInterfaceResponse extends WxIsv.WxIsvResponse {
-  audit_id: number
+  auditId: number
 }
 
 type PrivacyVersion = 1 | 2
