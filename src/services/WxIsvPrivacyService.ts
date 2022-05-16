@@ -61,6 +61,10 @@ interface WxIsvPrivacyInterfaceResponse {
   }[]
 }
 
+interface WxIsvApplyPrivacyInterfaceResponse extends WxIsv.WxIsvResponse {
+  audit_id: number
+}
+
 type PrivacyVersion = 1 | 2
 
 export class WxIsvPrivacyService extends WxIsvServiceBase {
@@ -137,7 +141,7 @@ export class WxIsvPrivacyService extends WxIsvServiceBase {
    * @param video_list (辅助视频)填写视频的链接，最多支持1个；视频格式只支持mp4格式
    * @returns
    */
-  async applyPrivacySetting(
+  async applyPrivacyInterface(
     accessToken: string,
     api_name: string,
     content: string,
@@ -151,6 +155,6 @@ export class WxIsvPrivacyService extends WxIsvServiceBase {
       { api_name, content, url_list, pic_list, video_list },
       { access_token: accessToken }
     )
-    return res as WxIsv.WxIsvResponse
+    return res as WxIsvApplyPrivacyInterfaceResponse
   }
 }

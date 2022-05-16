@@ -546,7 +546,6 @@ export declare namespace WxIsv {
   interface WxIsvResponse {
     errcode: number
     errmsg: string
-    audit_id?: number
   }
 
   type WxIsvConfig = typeof wxIsvConfig
