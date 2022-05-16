@@ -1,6 +1,5 @@
 import { $ } from 'coa-helper'
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
-import { WxIsvPrivacySettingResponse, WxIsvPrivacyInterfaceResponse } from '../types/privice'
 import { WxIsv } from '../typings'
 
 interface OwnerSetting {
@@ -16,6 +15,50 @@ interface OwnerSetting {
 interface SettingItem {
   privacy_key: string
   privacy_text: string
+}
+
+interface WxIsvPrivacySettingResponse {
+  errcode: number
+  errmsg: string
+  code_exist: number
+  privacy_list: string[]
+  setting_list: {
+    privacy_key: string
+    privacy_text: string
+    privacy_label: string
+  }[]
+  update_time: number
+  owner_setting: {
+    contact_phone: string
+    contact_email: string
+    contact_qq: string
+    contact_weixin: string
+    store_expire_timestamp: string
+    ext_file_media_id: string
+    notice_method: string
+  }
+  privacy_desc: {
+    privacy_desc_list: {
+      privacy_key: string
+      privacy_desc: string
+    }[]
+  }
+}
+
+interface WxIsvPrivacyInterfaceResponse {
+  errcode: number
+  errmsg: string
+  interface_list: {
+    api_name: string
+    api_ch_name: string
+    api_desc: string
+    status: number
+    api_link: string
+    group_name: string
+    apply_time?: undefined
+    audit_id?: undefined
+    fail_reason?: undefined
+  }[]
 }
 
 type PrivacyVersion = 1 | 2
