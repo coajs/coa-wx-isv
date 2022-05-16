@@ -84,9 +84,9 @@ const wxIsvStatDailySummary = {
 }
 
 const wxIsvStatDailyRetain = {
-  ref_date: '20170313',
-  visit_uv_new: [{ key: 0, value: 5464 }],
-  visit_uv: [{ key: 0, value: 55500 }],
+  refDate: '20170313',
+  visitUvNew: [{ key: 0, value: 5464 }],
+  visitUv: [{ key: 0, value: 55500 }],
 }
 
 const wxIsvConfig = {
@@ -274,7 +274,7 @@ const wxIsvExpressBatchGetOrder = [
 ]
 
 const wxIsvExpressBatchGetOrderResponse = {
-  order_list: [
+  orderList: [
     {
       errcode: 0,
       errmsg: 'ok',
@@ -443,7 +443,7 @@ const wxIsvGetAllPrinterResponse = {
 }
 
 const wxIsvGetQuoatResponse = {
-  quota_num: 210,
+  quotaNum: 210,
 }
 
 const wxIsvAddOrderResponse = {
@@ -464,8 +464,8 @@ const wxIsvAddOrderResponse = {
 const wxIsvRawDeliveryErrorResponse = {
   errcode: 9300501,
   errmsg: 'delivery logic fail',
-  delivery_resultcode: 10002,
-  delivery_resultmsg: '客户密码不正确',
+  deliveryResultcode: 10002,
+  deliveryResultmsg: '客户密码不正确',
 }
 
 const wxIsvAddTemplateResponse = {
@@ -498,8 +498,8 @@ const wxIsvTicketResponse = {
 const wxIsvMpShowItem = {
   errcode: 0,
   errmsg: 'ok',
-  can_open: 1,
-  is_open: 1,
+  canOpen: 1,
+  isOpen: 1,
   appid: '展示的公众号appid',
   nickname: '展示的公众号nickname',
   headimg: '展示的公众号头像',
@@ -508,8 +508,8 @@ const wxIsvMpShowItem = {
 const wxIsvMpShowItemList = {
   errcode: 0,
   errmsg: 'ok',
-  total_num: 10,
-  biz_info_list: [
+  totalNum: 10,
+  bizInfoList: [
     {
       nickname: '公众号昵称',
       appid: '公众号appid',
