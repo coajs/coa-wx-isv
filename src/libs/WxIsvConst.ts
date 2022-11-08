@@ -147,4 +147,11 @@ export const AuthScopes: WxIsv.Dic<WxIsv.WxIsvAuthItem> = {
     desc: '支持对小商店订单及物流信息进行管理',
     mutex: false,
   },
+  76:{
+    id: 76,
+    name: '小程序违规与交易投诉管理权限',
+    alias: 'complain',
+    desc: '支持对小程序违规与交易投诉进行管理',
+    mutex: true,
+  }
 }
