@@ -518,6 +518,44 @@ const wxIsvMpShowItemList = {
   ],
 }
 
+const wxIsvComplainResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  complaintOrder: {
+    complaintOrderId: 'sadfasdf',//订单id
+    openId: 'dfasefasefase', //openId
+    createTime: 1658903527, //投诉发起时间
+    phoneNumber: 13599125777, //联系方式
+    type: 12,  //投诉问题分类
+    status: 1,//订单状态，枚举值
+    customerMaterial:{
+      content: '', //投诉内容
+      mediaIdList: ['fsadfasdfsaf'] //投诉内容图片 cdn 列表
+    },
+    orderId: '2342', //微信支付订单号
+    outTradeNo: 'sdfsfd',   //商家订单号
+    productName: 'sdf', //商品名称
+    payTime: 1658903465,    //支付时间
+    totalCost: "￥0.01",    //交易金额
+    expireTime: 1658903564 //投诉单当前状态到期时间,0为不存在
+  },
+  // 投诉进度
+  item:[{
+    itemType: 1, //投诉节点状态
+    time: 1658903527,  //时间
+    phoneNumber: 13599125777, //手机号
+    content: '', //内容
+    mediaIdList: ['https://asdfasdf']  //图片 cdn 列表
+  }],
+  returnBill: {
+    returnId: '23234234234',    //退货id
+    waybillId: 'YDxxxxd', //运单号
+    deliveryName: '韵达快递', //运力公司
+    orderStatus: 4 //运单状态
+  }
+}
+
+
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
@@ -586,4 +624,5 @@ export declare namespace WxIsv {
   type WxIsvTicket = typeof wxIsvTicketResponse
   type WxIsvMpShowItem = typeof wxIsvMpShowItem
   type WxIsvMpShowItemList = typeof wxIsvMpShowItemList
+  type WxIsvComplainResponse = typeof wxIsvComplainResponse
 }
