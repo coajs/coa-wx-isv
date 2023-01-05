@@ -135,24 +135,4 @@ export class WxIsvReleaseService extends WxIsvServiceBase {
       { access_token: accessToken }
     )) as WxIsv.WxIsvNormalResponse
   }
-
-  // 设置订单页 path 信息
-  async applySetOrderPathInfo(accessToken: string, batchReq: string[]) {
-    return (await this.request(
-      'POST',
-      '/wxa/security/applysetorderpathinfo',
-      { batchReq },
-      { access_token: accessToken }
-    )) as WxIsv.WxIsvNormalResponse
-  }
-
-  // 获取订单页 path 信息
-  async getOrderPathInfo(accessToken: string, info_type: number) {
-    return (await this.request(
-      'POST',
-      '/wxa/security/getorderpathinfo',
-      { info_type },
-      { access_token: accessToken }
-    )) as WxIsv.WxIsvNormalResponse
-  }
 }
