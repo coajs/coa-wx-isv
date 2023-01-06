@@ -3,7 +3,7 @@ import { WxIsv } from '../typings'
 
 export class WxIsvBasicservice extends WxIsvServiceBase {
     // 设置订单页 path 信息
-    async applySetOrderPathInfo(accessToken: string, batchReq: Record<string, string>) {
+    async applySetOrderPathInfo(accessToken: string, batchReq: Record<any, any>) {
         return (await this.request(
             'POST',
             '/wxa/security/applysetorderpathinfo',
