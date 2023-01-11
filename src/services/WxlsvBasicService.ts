@@ -1,14 +1,13 @@
-import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 import { WxIsv } from '../typings'
-
-export class WxIsvBasicservice extends WxIsvServiceBase {
+import { WxIsvTokenService } from './WxIsvTokenService'
+export class WxIsvBasicService extends WxIsvTokenService {
     // 设置订单页 path 信息
     async applySetOrderPathInfo(accessToken: string, batchReq: Record<any, any>) {
         return (await this.request(
             'POST',
             '/wxa/security/applysetorderpathinfo',
-            { batchReq },
-            { access_token: accessToken }
+            { batch_req: batchReq },
+            { component_access_token: await this.getToken() }
         )) as WxIsv.WxIsvNormalResponse
     }
 
