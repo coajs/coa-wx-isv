@@ -143,10 +143,10 @@ export class WxIsvExpressService extends WxIsvServiceBase {
   ) {
     const param = $.snakeCaseKeys(data)
     return (await this.request(
-      'GET',
+      'POST',
       '/cgi-bin/express/business/quota/get',
-      {},
-      { access_token: accessToken, ...param }
+      param,
+      { access_token: accessToken, }
     )) as WxIsv.WxIsvGetQuoatResponse
   }
 
@@ -184,6 +184,80 @@ export class WxIsvExpressService extends WxIsvServiceBase {
       param,
       { access_token: accessToken }
     )) as WxIsv.WxIsvNormalResponse
+  }
+
+  //申请开通物流查询组件 https://developers.weixin.qq.com/doc/oplatform/openApi/OpenApiDoc/miniprogram-management/logistics-service/applyQueryPlugin.html
+  async applyQueryPlugin(
+    accessToken: string,
+  ) {
+    return (await this.request(
+      'POST',
+      '/cgi-bin/express/delivery/open_msg/open_query_plugin',
+      {},
+      { access_token: accessToken }
+    )) as WxIsv.WxIsvResponse
+  }
+
+  //传运单接口 https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/express/business/express_search.html
+  async traceWaybill(
+    accessToken: string,
+    data: {
+      openId: string
+      receiverPhone: string
+      deliveryId: string
+      waybillId: string
+      goodsInfo: {
+        detailList: Array<{
+          goodsName: string
+          goodsImgUrl: string
+        }>
+      }
+      transId: string
+    }
+  ) {
+    const param = $.snakeCaseKeys(data)
+    return (await this.request(
+      'POST',
+      '/cgi-bin/express/delivery/open_msg/trace_waybill',
+      param,
+      { access_token: accessToken }
+    )) as WxIsv.wxIsvTraceWaybillResponse
+  }
+
+  //查询运单接口 https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/express/business/express_search.html
+  async queryTrace(
+    accessToken: string,
+    data: {
+      waybillToken: string
+    }
+  ) {
+    const param = $.snakeCaseKeys(data)
+    return (await this.request(
+      'POST',
+      '/cgi-bin/express/delivery/open_msg/query_trace',
+      param,
+      { access_token: accessToken }
+    )) as WxIsv.wxIsvQueryTraceResponse
+  }
+
+  //更新物流信息接口 https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/express/business/express_search.html
+  async updateWaybillGoods(
+    accessToken: string,
+    data: {
+      waybillToken: string
+      goodsInfo: Array<{
+        goodsName: string
+        goodsImgUrl: string
+      }>
+    }
+  ) {
+    const param = $.snakeCaseKeys(data)
+    return (await this.request(
+      'POST',
+      '/cgi-bin/express/delivery/open_msg/update_waybill_goods',
+      param,
+      { access_token: accessToken }
+    )) as WxIsv.WxIsvResponse
   }
 
   protected customErrorHandler(res: WxIsv.AxiosResponse) {

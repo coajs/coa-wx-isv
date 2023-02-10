@@ -528,7 +528,7 @@ const wxIsvComplainResponse = {
     phoneNumber: 13599125777, //联系方式
     type: 12,  //投诉问题分类
     status: 1,//订单状态，枚举值
-    customerMaterial:{
+    customerMaterial: {
       content: '', //投诉内容
       mediaIdList: ['fsadfasdfsaf'] //投诉内容图片 cdn 列表
     },
@@ -540,7 +540,7 @@ const wxIsvComplainResponse = {
     expireTime: 1658903564 //投诉单当前状态到期时间,0为不存在
   },
   // 投诉进度
-  item:[{
+  item: [{
     itemType: 1, //投诉节点状态
     time: 1658903527,  //时间
     phoneNumber: 13599125777, //手机号
@@ -555,6 +555,34 @@ const wxIsvComplainResponse = {
   }
 }
 
+const wxIsvTraceWaybillResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  waybill_token: "o_ARWHaxIxzWHmdui-AIw9KBr8qNnbmc08V0KhDyXE-IMLo6AcOqJkPsNLcLzfTb"
+}
+
+const wxIsvQueryTraceResponse = {
+  "errcode": 0,
+  "errmsg": "ok",
+  "waybill_info": {
+    "status": 0,
+    "waybill_id": "WXTESTEXPRESS0000014"
+  },
+  "shop_info": {
+    "goods_info": {
+      "detail_list": [
+        {
+          "goods_name": "测试名字",
+          "goods_img_url": "www.qq.com"
+        },
+        {
+          "goods_name": "测试名字2",
+          "goods_img_url": "www.qq.com"
+        }
+      ]
+    }
+  }
+}
 
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
@@ -586,6 +614,8 @@ export declare namespace WxIsv {
     errmsg: string
   }
 
+  type wxIsvQueryTraceResponse = typeof wxIsvQueryTraceResponse
+  type wxIsvTraceWaybillResponse = typeof wxIsvTraceWaybillResponse
   type WxIsvConfig = typeof wxIsvConfig
   type WxIsvTemplateItem = typeof wxIsvTemplateItem
   type WxIsvTemplateDraft = typeof wxIsvTemplateDraft
@@ -607,8 +637,7 @@ export declare namespace WxIsv {
   type WxIsvAuthAccountInfo = typeof wxIsvAuthAccountInfo
   type WxIsvAuthRefreshInfo = typeof wxIsvAuthRefreshInfo
   type WxIsvExpressBatchGetOrder = typeof wxIsvExpressBatchGetOrder
-  type WxIsvExpressBatchGetOrderResponse =
-    typeof wxIsvExpressBatchGetOrderResponse
+  type WxIsvExpressBatchGetOrderResponse = typeof wxIsvExpressBatchGetOrderResponse
   type WxIsvAddOrderParam = typeof wxIsvAddOrderParam
   type WxIsvCancelOrderResponse = typeof wxIsvCancelOrderResponse
   type WxIsvGetAllAccountResponse = typeof wxIsvGetAllAccountResponse
