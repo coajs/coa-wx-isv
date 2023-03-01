@@ -154,4 +154,12 @@ export const AuthScopes: WxIsv.Dic<WxIsv.WxIsvAuthItem> = {
     desc: '支持对小程序违规与交易投诉进行管理',
     mutex: true,
   }
+  ,
+  88:{
+    id: 88,
+    name: '小程序链接管理',
+    alias: 'url',
+    desc: '基于该权限可获取小程序链接',
+    mutex: false,
+  }
 }
