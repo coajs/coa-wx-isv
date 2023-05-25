@@ -145,8 +145,8 @@ export class WxIsvExpressService extends WxIsvServiceBase {
     return (await this.request(
       'POST',
       '/cgi-bin/express/business/quota/get',
-      {},
-      { access_token: accessToken, ...param }
+      param,
+      { access_token: accessToken },
     )) as WxIsv.WxIsvGetQuoatResponse
   }
 
