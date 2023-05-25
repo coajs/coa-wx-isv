@@ -143,10 +143,10 @@ export class WxIsvExpressService extends WxIsvServiceBase {
   ) {
     const param = $.snakeCaseKeys(data)
     return (await this.request(
-      'GET',
+      'POST',
       '/cgi-bin/express/business/quota/get',
-      {},
-      { access_token: accessToken, ...param }
+      param,
+      { access_token: accessToken },
     )) as WxIsv.WxIsvGetQuoatResponse
   }
 
