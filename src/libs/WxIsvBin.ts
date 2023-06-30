@@ -1,5 +1,5 @@
 import { CoaError } from 'coa-error'
-import { $, axios, _ } from 'coa-helper'
+import { $, _, axios } from 'coa-helper'
 import { WxIsv } from '../typings'
 import { WxIsvStorage } from './WxIsvStorage'
 
@@ -28,6 +28,44 @@ export class WxIsvBin {
   ): Promise<any> {
     // 错误配置
     const res = await axios.request({ baseURL, ...request }).catch((e) => e)
+    // 处理返回结果
+    try {
+      return this.handleResponse(
+        res,
+        customErrorMessage,
+        customErrorHandler,
+        ignoreError
+      )
+    } catch (e: any) {
+      // 触发重试机制
+      if (e.code === 'CoaWxIsv.WxReturnError.-1' && retryTimes < 3) {
+        retryTimes++
+        await $.timeout(retryTimes * 200)
+        return await this.request(
+          request,
+          customErrorMessage,
+          customErrorHandler,
+          ignoreError,
+          retryTimes
+        )
+      }
+      // 触发错误事件
+      this.onRequestError(e, res)
+      throw e
+    }
+  }
+
+  // 请求并处理错误
+  async requestTransformResponse(
+    request: WxIsv.AxiosRequestConfig,
+    customErrorMessage: WxIsv.customErrorMessage,
+    customErrorHandler: WxIsv.customErrorHandler,
+    ignoreError: WxIsv.IgnoreError,
+    transformResponseFunction: WxIsv.AxiosTransformer,
+    retryTimes = 0,
+  ): Promise<any> {
+    // 错误配置
+    const res = await axios.request({ baseURL, ...request, transformResponse: [transformResponseFunction] }).catch((e) => e)
 
     // 处理返回结果
     try {

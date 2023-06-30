@@ -644,6 +644,7 @@ export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
   type AxiosRequestConfig = Axios.AxiosRequestConfig
+  type AxiosTransformer = Axios.AxiosTransformer
 
   interface WxIsvAuthItem {
     id: number

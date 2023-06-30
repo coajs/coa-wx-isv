@@ -9,7 +9,6 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
     async open(
         accessToken: string,
     ) {
-        // const order_list = $.snakeCaseKeys(orderList)
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/open',
@@ -23,12 +22,12 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         accessToken: string,
         quota: number
     ) {
-        // const order_list = $.snakeCaseKeys(orderList)
-        return (await this.request(
+        return (await this.requestTransformResponse(
             'POST',
-            '/wxa/business/insurance_freight/open',
+            '/wxa/business/insurance_freight/createchargeid',
             { quota },
-            { access_token: accessToken }
+            { access_token: accessToken },
+            (data) => { return JSON.parse(data.replace(/"(\w+)":(\d{0,})([,}])/g, '"$1":"$2"$3')) }
         )) as WxIsv.WxIsvCreatechargeidResponse
     }
 
@@ -37,7 +36,6 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         accessToken: string,
         orderId: string
     ) {
-        // const order_list = $.snakeCaseKeys(orderList)
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/applypay',
@@ -59,7 +57,7 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/getpayorderlist',
-            { params },
+            { ...params },
             { access_token: accessToken }
         )) as WxIsv.WxIsvGetpayorderlistResponse
     }
@@ -88,7 +86,7 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/getsummary',
-            { params },
+            { ...params },
             { access_token: accessToken }
         )) as WxIsv.WxIsvGetsummaryResponse
     }
@@ -106,7 +104,7 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/getorderlist',
-            { params },
+            { ...params },
             { access_token: accessToken }
         )) as WxIsv.WxIsvGetorderlistResponse
     }
@@ -128,7 +126,7 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/createorder',
-            { params },
+            { ...params },
             { access_token: accessToken }
         )) as WxIsv.WxIsvCreateorderResponse
     }
@@ -147,7 +145,7 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
         return (await this.request(
             'POST',
             '/wxa/business/insurance_freight/claim',
-            { params },
+            { ...params },
             { access_token: accessToken }
         )) as WxIsv.WxIsvCreateorderResponse
     }
