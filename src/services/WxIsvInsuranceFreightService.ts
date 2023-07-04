@@ -98,6 +98,14 @@ export class WxIsvInsuranceFreightService extends WxIsvServiceBase {
             statusList: number[]
             offset: number
             limit: number
+            openid?: string
+            orderNo?: string
+            policyNo?: string
+            reportNo?: string
+            deliverNo?: string
+            refundDeliveryNo?: string
+            beginTime?: string
+            endTime?: string
         }
     ) {
         const params = $.snakeCaseKeys(data)
