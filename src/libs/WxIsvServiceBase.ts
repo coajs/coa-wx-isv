@@ -41,6 +41,23 @@ export class WxIsvServiceBase {
     )
   }
 
+  async requestTransformResponse(
+    method: WxIsv.AxiosMethod,
+    url: string,
+    data: Record<string, any>,
+    params: Record<string, any>,
+    transformResponseFunction: WxIsv.AxiosTransformer,
+    ignoreError: WxIsv.IgnoreError = [],
+  ) {
+    return await this.bin.requestTransformResponse(
+      { method, url, params, data },
+      this.customErrorMessage,
+      this.customErrorHandler,
+      ignoreError,
+      transformResponseFunction
+    )
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected customErrorHandler(res: WxIsv.AxiosResponse) {
     // handle custom error

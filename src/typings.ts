@@ -528,7 +528,7 @@ const wxIsvComplainResponse = {
     phoneNumber: 13599125777, //联系方式
     type: 12,  //投诉问题分类
     status: 1,//订单状态，枚举值
-    customerMaterial:{
+    customerMaterial: {
       content: '', //投诉内容
       mediaIdList: ['fsadfasdfsaf'] //投诉内容图片 cdn 列表
     },
@@ -540,7 +540,7 @@ const wxIsvComplainResponse = {
     expireTime: 1658903564 //投诉单当前状态到期时间,0为不存在
   },
   // 投诉进度
-  item:[{
+  item: [{
     itemType: 1, //投诉节点状态
     time: 1658903527,  //时间
     phoneNumber: 13599125777, //手机号
@@ -555,11 +555,96 @@ const wxIsvComplainResponse = {
   }
 }
 
+const wxIsvCreatechargeidResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  report_no: "90581008120350195232"
+}
+
+const wxIsvApplypayResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  pay_url: "https://fuwu.weixin.qq.com/service/common/buy?hasApply=1&orderId=2850151276313431996"
+}
+
+const wxIsvGetpayorderlistResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  list: [
+    {
+      order_id: 2850151276313431996,
+      order_status: 5,
+      total_price: 1000,
+      create_time: 1678966793,
+      pay_time: 1678966880,
+      can_refund: true,
+      refund_time: 0,
+      refund_status: 1
+    }
+  ],
+  total: 1
+}
+
+const wxIsvGetsummaryResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  total: 0,
+  claim_num: 0,
+  claim_succ_num: 0,
+  premium: 18,
+  funds: 482,
+  need_close: false
+}
+
+const wxIsvGetorderlistResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  list: [
+    {
+      order_no: "4200001197202103228672982584",
+      policy_no: "10288003264673876281",
+      report_no: "",
+      status: 2,
+      insurance_end_date: "2023-06-14 19:41:34",
+      premium: 20,
+      estimate_amount: 1200,
+      delivery_no: "delivery20230321001",
+      refund_delivery_no: ""
+    },
+    {
+      order_no: "4200001197202103228672982585",
+      policy_no: "10288003264673876282",
+      report_no: "90581008120350195232",
+      status: 4,
+      insurance_end_date: "2023-06-20 16:36:54",
+      premium: 20,
+      estimate_amount: 1200,
+      delivery_no: "delivery20230322001",
+      refund_delivery_no: "delivery20230322001"
+    }
+  ],
+  "total": 2
+}
+
+const wxIsvCreateorderResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  policy_no: "10288003264673876282",
+  insurance_end_date: "2023-06-20 16:36:54",
+  estimate_amount: 1200
+}
+
+const wxIsvClaimResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  report_no: "90581008120350195232"
+}
 
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
   type AxiosRequestConfig = Axios.AxiosRequestConfig
+  type AxiosTransformer = Axios.AxiosTransformer
 
   interface WxIsvAuthItem {
     id: number
@@ -625,4 +710,11 @@ export declare namespace WxIsv {
   type WxIsvMpShowItem = typeof wxIsvMpShowItem
   type WxIsvMpShowItemList = typeof wxIsvMpShowItemList
   type WxIsvComplainResponse = typeof wxIsvComplainResponse
+  type WxIsvCreatechargeidResponse = typeof wxIsvCreatechargeidResponse
+  type WxIsvApplypayResponse = typeof wxIsvApplypayResponse
+  type WxIsvGetpayorderlistResponse = typeof wxIsvGetpayorderlistResponse
+  type WxIsvGetsummaryResponse = typeof wxIsvGetsummaryResponse
+  type WxIsvGetorderlistResponse = typeof wxIsvGetorderlistResponse
+  type WxIsvCreateorderResponse = typeof wxIsvCreateorderResponse
+  type WxIsvClaimResponse = typeof wxIsvClaimResponse
 }
