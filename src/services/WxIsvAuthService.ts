@@ -22,12 +22,12 @@ const wxImage = new (class {
 
 export class WxIsvAuthService extends WxIsvTokenService {
   // 获取授权跳转链接
-  async createRedirectUrl(redirectUri: string, plantform: 'pc' | 'mobile') {
+  async createRedirectUrl(redirectUri: string, authType: 1 | 2 | 3, plantform: 'pc' | 'mobile') {
     redirectUri = encodeURIComponent(redirectUri)
     const pre_auth_code = await this.createPreAuthCode()
 
-    const pc = `https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=${this.config.appId}&pre_auth_code=${pre_auth_code}&redirect_uri=${redirectUri}&auth_type=2`
-    const mobile = `https://mp.weixin.qq.com/safe/bindcomponent?action=bindcomponent&no_scan=1&component_appid=${this.config.appId}&pre_auth_code=${pre_auth_code}&redirect_uri=${redirectUri}&auth_type=2#wechat_redirect`
+    const pc = `https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=${this.config.appId}&pre_auth_code=${pre_auth_code}&redirect_uri=${redirectUri}&auth_type=${authType}`
+    const mobile = `https://mp.weixin.qq.com/safe/bindcomponent?action=bindcomponent&no_scan=1&component_appid=${this.config.appId}&pre_auth_code=${pre_auth_code}&redirect_uri=${redirectUri}&auth_type=${authType}#wechat_redirect`
 
     return plantform === 'pc' ? pc : mobile
   }
