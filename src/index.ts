@@ -19,6 +19,7 @@ export { WxIsvSubscribeService } from './services/WxIsvSubscribeService'
 export { WxIsvTemplateService } from './services/WxIsvTemplateService'
 export { WxIsvTesterService } from './services/WxIsvTesterService'
 export { WxIsvUrllinkService } from './services/WxIsvUrllinkService'
+export { WxIsvWxOpenService } from './services/WxIsvWxOpenService'
 export { WxIsvBasicService } from './services/WxlsvBasicService'
 export { WxIsv } from './typings'
 
