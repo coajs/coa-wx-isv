@@ -6,6 +6,10 @@ interface UrllinkGenerateResult {
   urlLink: string
 }
 
+interface ShortUrllinkGenerateResult {
+  link: string
+}
+
 export class WxIsvUrllinkService extends WxIsvServiceBase {
   /**
    * 生成永久的URL LINK
@@ -50,4 +54,23 @@ export class WxIsvUrllinkService extends WxIsvServiceBase {
       access_token: accessToken,
     })
   }
+
+  /**
+   * 获取小程序 Short Link，适用于微信内拉起小程序的业务场景
+   * 详见 https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/qrcode-link/short-link/generateShortLink.html
+   */
+  async generateShortLink(
+    accessToken: string,
+    page_url: string,
+    page_title = '',
+    is_permanent = true
+  ): Promise<ShortUrllinkGenerateResult> {
+    return await this.request(
+      'POST',
+      '/wxa/genwxashortlink',
+      {},
+      { access_token: accessToken, page_url, page_title, is_permanent }
+    )
+  }
+
 }
