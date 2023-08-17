@@ -140,4 +140,32 @@ export class WxIsvQrService extends WxIsvServiceBase {
       { access_token: accessToken }
     )) as { shortUrl: string }
   }
+
+  /**
+   * 生成带参数的二维码（创建永久二维码ticket）
+   * https://developers.weixin.qq.com/doc/offiaccount/Account_Management/Generating_a_Parametric_QR_Code.html
+   * @param accessToken 接口调用凭证
+   * @param scene_str 场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
+   */
+  async getMpTicket(accessToken: string, scene_str: string) {
+    return (await this.request(
+      'POST',
+      '/cgi-bin/qrcode/create',
+      { action_name: 'QR_LIMIT_STR_SCENE', action_info: { scene: { scene_str } } },
+      { access_token: accessToken }
+    )) as { ticket: string; url: string }
+  }
+  /**
+   * 生成带参数的二维码（通过ticket换取二维码）
+   * @param ticket 二维码ticket
+   */
+  async getMpQrCode(ticket: string) {
+    ticket = encodeURIComponent(ticket)
+    return await this.requestStream(
+      'GET',
+      'https://mp.weixin.qq.com/cgi-bin/showqrcode',
+      {},
+      { ticket }
+    )
+  }
 }
