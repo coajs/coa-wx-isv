@@ -30,11 +30,11 @@ export class WxIsvChargeService extends WxIsvServiceBase {
    * 小程序可通过本接口查询已购买资源包的用量情况
    * 详见 https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/charge/api/charge_get_usage_detail.html
    * @param access_token 接口调用凭证，该参数为 URL 参数，非 Body 参数
-   * @param spuId 商品SPU ID，集采-手机号快速验证组件：10000117，集采-手机号实时验证组件：10000120
+   * @param spuId 商品SPU ID，小程序音视频通话：10000058，手机号快速验证组件：10000077，手机号实时验证组件：10000086，地图个性化样式组件：10000092
    * @param offset 分页偏移量，从0开始
    * @param limit 每页个数，最大20
    */
-  async getUsageDetail(access_token: string, spuId = '10000117', offset = 0, limit= 20) {
+  async getUsageDetail(access_token: string, spuId = '10000077', offset = 0, limit= 20) {
     return await this.request(
       'GET',
       '/wxa/charge/usage/get',
