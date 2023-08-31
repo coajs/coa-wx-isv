@@ -45,12 +45,12 @@ export class WxIsvReleaseService extends WxIsvServiceBase {
   }
 
   // 将代码包提交审核
-  async submitAudit(accessToken: string, item_list: any[], order_path: string) {
+  async submitAudit(accessToken: string, item_list: any[], order_path: string, privacy_api_not_use: boolean) {
     item_list = $.snakeCaseKeys(item_list)
     const { auditid: auditId = '' } = (await this.request(
       'POST',
       '/wxa/submit_audit',
-      { item_list, order_path },
+      { item_list, order_path, privacy_api_not_use },
       { access_token: accessToken },
     )) as WxIsv.WxIsvReleaseAuditSubmit
     return auditId as string
