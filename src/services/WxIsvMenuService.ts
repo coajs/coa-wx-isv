@@ -1,5 +1,4 @@
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
-import { WxIsv } from '../typings'
 
 export class WxIsvMenuService extends WxIsvServiceBase {
   /**
