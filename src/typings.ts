@@ -644,6 +644,49 @@ const wxIsvClaimResponse = {
   report_no: "90581008120350195232"
 }
 
+const wxIsvMediaCheckAsyncResponse =
+{
+  errcode: 0,
+  errmsg: "ok",
+  trace_id: "60f96f1d-3845297a-1976a3ae"
+}
+
+const wxIsvMsgSecCheckResponse = {
+  errcode: 0,
+  errmsg: "ok",
+  result: {
+    suggest: "risky",
+    label: 20001
+  },
+  detail: [
+    {
+      strategy: "content_model",
+      errcode: 0,
+      suggest: "risky",
+      label: 20006,
+      prob: 90
+    },
+    {
+      strategy: "keyword",
+      errcode: 0,
+      suggest: "pass",
+      label: 20006,
+      level: 20,
+      keyword: "命中的关键词1"
+    },
+    {
+      strategy: "keyword",
+      errcode: 0,
+      suggest: "risky",
+      label: 20006,
+      level: 90,
+      keyword: "命中的关键词2"
+    }
+  ],
+  trace_id: "60ae120f-371d5872-7941a05b"
+}
+
+
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
@@ -674,6 +717,7 @@ export declare namespace WxIsv {
     errcode: number
     errmsg: string
   }
+
 
   type WxIsvConfig = typeof wxIsvConfig
   type WxIsvTemplateItem = typeof wxIsvTemplateItem
@@ -721,4 +765,6 @@ export declare namespace WxIsv {
   type WxIsvGetorderlistResponse = typeof wxIsvGetorderlistResponse
   type WxIsvCreateorderResponse = typeof wxIsvCreateorderResponse
   type WxIsvClaimResponse = typeof wxIsvClaimResponse
+  type WxIsvMediaCheckAsyncResponse = typeof wxIsvMediaCheckAsyncResponse
+  type WxIsvMsgSecCheckResponse = typeof wxIsvMsgSecCheckResponse
 }
