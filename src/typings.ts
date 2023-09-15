@@ -644,6 +644,22 @@ const wxIsvClaimResponse = {
   report_no: "90581008120350195232"
 }
 
+const wxIsvPluginManagementResponse =
+{
+  "errcode": 0,
+  "errmsg": "ok",
+  "plugin_list": [
+    {
+      "appid": "aaaa",
+      "status": 1,
+      "nickname": "插件昵称",
+      "headimgurl": "http://plugin.qq.com"
+    }
+  ]
+}
+
+
+
 export declare namespace WxIsv {
   type AxiosMethod = Axios.Method
   type AxiosResponse = Axios.AxiosResponse
@@ -721,4 +737,6 @@ export declare namespace WxIsv {
   type WxIsvGetorderlistResponse = typeof wxIsvGetorderlistResponse
   type WxIsvCreateorderResponse = typeof wxIsvCreateorderResponse
   type WxIsvClaimResponse = typeof wxIsvClaimResponse
+  type WxIsvPluginManagementResponse = typeof wxIsvPluginManagementResponse
+
 }

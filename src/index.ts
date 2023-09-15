@@ -12,6 +12,7 @@ export { WxIsvInsuranceFreightService } from './services/WxIsvInsuranceFreightSe
 export { WxIsvMaterialService } from './services/WxIsvMaterialService'
 export { WxIsvMenuService } from './services/WxIsvMenuService'
 export { WxIsvMpService } from './services/WxIsvMpService'
+export { WxIsvPluginManagementService } from './services/WxIsvPluginManagementService'
 export { WxIsvPrivacyService } from './services/WxIsvPrivacyService'
 export { WxIsvQrService } from './services/WxIsvQrService'
 export { WxIsvReleaseService } from './services/WxIsvReleaseService'
