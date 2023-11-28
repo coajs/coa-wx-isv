@@ -112,7 +112,7 @@ export class WxIsvAuthService extends WxIsvTokenService {
         component_access_token,
         component_appid,
       }
-    )) as { openid: string; sessionKey: string }
+    )) as { openid: string; sessionKey: string; unionid?: string }
   }
 
   // 获取预授权码pre_auth_code
