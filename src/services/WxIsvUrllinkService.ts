@@ -36,7 +36,8 @@ export class WxIsvUrllinkService extends WxIsvServiceBase {
     accessToken: string,
     path: string,
     query: string,
-    expireDay = 31
+    expireDay = 30,
+    envVersion = 'release'
   ): Promise<UrllinkGenerateResult> {
     if (expireDay > 31)
       CoaError.message(
@@ -49,6 +50,7 @@ export class WxIsvUrllinkService extends WxIsvServiceBase {
       is_expire: true,
       expire_type: 1,
       expire_interval: expireDay,
+      env_version: envVersion,
     })
     return await this.request('POST', '/wxa/generate_urllink', data, {
       access_token: accessToken,
@@ -68,8 +70,8 @@ export class WxIsvUrllinkService extends WxIsvServiceBase {
     return await this.request(
       'POST',
       '/wxa/genwxashortlink',
-      {},
-      { access_token: accessToken, page_url, page_title, is_permanent }
+      { page_url, page_title, is_permanent },
+      { access_token: accessToken }
     )
   }
 
