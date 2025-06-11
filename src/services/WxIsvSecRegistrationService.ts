@@ -6,14 +6,20 @@ export class WxIsvSecRegistrationService extends WxIsvTokenService {
 
     // https://developers.weixin.qq.com/doc/oplatform/openApi/OpenApiDoc/miniprogram-management/basic-info-management/getAccountBasicInfo.html
 
-    async fastRegisterweApp(data: { name: string, code: string, codeType: number, legalPersonaWechat: string, legalPersonaName: string, action?: string, componentPhone?: string, }) {
+    async registerMiniprogram(data: { name: string, code: string, codeType: number, legalPersonaWechat: string, legalPersonaName: string, action?: string, componentPhone?: string, }) {
         data = $.snakeCaseKeys(data)
-
         const res = await this.request('POST', '/cgi-bin/component/fastregisterweapp', data, {
             action: 'create',
             component_access_token: await this.getToken()
         })
-
+        return res
+    }
+    async registerMiniprogramSearch(data: { name: string, code: string, codeType: number, legalPersonaWechat: string, legalPersonaName: string, action?: string, componentPhone?: string, }) {
+        data = $.snakeCaseKeys(data)
+        const res = await this.request('POST', '/cgi-bin/component/fastregisterweapp', data, {
+            action: 'search',
+            component_access_token: await this.getToken()
+        })
         return res
     }
     async checkWxVerifyNickname(accessToken: string, nickName: string) {
