@@ -58,8 +58,31 @@ export class WxIsvServiceBase {
     )
   }
 
+  async requestBuffer(
+    method: WxIsv.AxiosMethod,
+    url: string,
+    buffer: Buffer,
+    headers: Record<string, string> = {},
+    params: Record<string, any> = {},
+    ignoreError: WxIsv.IgnoreError = []
+  ) {
+    return await this.bin.request(
+      {
+        method,
+        url,
+        params,
+        data: buffer,
+        headers,
+      },
+      this.customErrorMessage,
+      this.customErrorHandler,
+      ignoreError
+    )
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected customErrorHandler(res: WxIsv.AxiosResponse) {
     // handle custom error
   }
+
 }
