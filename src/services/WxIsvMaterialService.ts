@@ -1,8 +1,13 @@
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 
 export class WxIsvMaterialService extends WxIsvServiceBase {
-
-
+  /**
+     * 新增临时素材
+     * 详见  https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html
+     * @param accessToken 接口调用凭证
+     * @param buffer 文件buffer
+     * @param filename 文件name
+     */
   async uploadImage(accessToken: string, buffer: Buffer, filename: string) {
     const { body, boundary } = await this.buildMultipartForm({ buffer, filename })
     const headers = {
