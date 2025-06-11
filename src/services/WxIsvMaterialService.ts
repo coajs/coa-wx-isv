@@ -1,6 +1,38 @@
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 
 export class WxIsvMaterialService extends WxIsvServiceBase {
+
+
+  async uploadImage(accessToken: string, buffer: Buffer, filename: string) {
+    const { body, boundary } = await this.buildMultipartForm({ buffer, filename })
+    const headers = {
+      'Content-Type': `multipart/form-data; boundary=${boundary}`,
+      'Content-Length': body.length.toString(),
+    }
+
+    return await this.requestBuffer(
+      'POST',
+      '/cgi-bin/media/upload',
+      body,
+      headers,
+      { access_token: accessToken, type: 'image' }
+    )
+  }
+
+  async buildMultipartForm(data: { buffer: Buffer, filename: string, }) {
+    const boundary = '----WebKitFormBoundary' + Math.random().toString(16).slice(2)
+    const contentDisposition = `Content-Disposition: form-data; name="media"; filename="${data.filename}"`
+    const contentType = 'Content-Type: image/jpeg' // 根据需要可动态设置
+
+    const head = Buffer.from(
+      `--${boundary}\r\n${contentDisposition}\r\n${contentType}\r\n\r\n`
+    )
+    const tail = Buffer.from(`\r\n--${boundary}--\r\n`)
+
+    const body = Buffer.concat([head, data.buffer, tail])
+    return { body, boundary }
+  }
+
   /**
    * 公众号获取永久素材
    * 详见 https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/Get_materials_list.html
