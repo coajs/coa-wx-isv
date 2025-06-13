@@ -30,11 +30,11 @@ export class WxIsvSecRegistrationService extends WxIsvTokenService {
             { access_token: accessToken }
         ))
     }
-    async setNickname(accessToken: string, nickName: string, license: string, namingOtherStuff1?: string) {
+    async setNickname(accessToken: string, nickName: string, license: string, namingOthers: Record<string, any>) {
         return (await this.request(
             'POST',
             '/wxa/setnickname',
-            { nick_name: nickName, license, naming_other_stuff_1: namingOtherStuff1 },
+            { nick_name: nickName, license, ...namingOthers },
             { access_token: accessToken }
         ))
     }
