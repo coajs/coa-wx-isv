@@ -141,6 +141,14 @@ export class WxIsvSecRegistrationService extends WxIsvTokenService {
             { access_token: accessToken }
         ))
     }
+    async getIcpEntranceInfo(accessToken: string) {
+        return (await this.request(
+            'GET',
+            '/wxa/icp/get_icp_entrance_info',
+            {},
+            { access_token: accessToken }
+        ))
+    }
     async uploadIcpMedia(accessToken: string, buffer: Buffer, filename: string, fields: Record<string, string> = {}) {
         const { body, boundary } = await this.buildMultipartForm({ buffer, filename, fields })
         const headers = {
