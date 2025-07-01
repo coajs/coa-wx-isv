@@ -50,4 +50,54 @@ export class WxIsvSecurityService extends WxIsvServiceBase {
       die.hint('解密错误')
     }
   }
+
+  /**
+   * 文本内容安全识别
+   * 详见 https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/sec-center/sec-check/msgSecCheck.html
+   */
+  async msgSecCheck(
+    accessToken: string,
+    content: string,
+    version = 2,
+    scene: number, //1 资料；2 评论；3 论坛；4 社交日志
+    openid: string,
+    title?: string,
+    nickname?: string,
+    signature?: string
+  ) {
+    return await this.request('POST', '/wxa/msg_sec_check', {
+      content,
+      version,
+      scene,
+      openid,
+      title,
+      nickname,
+      signature
+    }, {
+      access_token: accessToken
+    })
+  }
+
+  /**
+   * 多媒体内容安全识别
+   * 详见 https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/sec-center/sec-check/mediaCheckAsync.html
+   */
+  async mediaCheckAsync(
+    accessToken: string,
+    media_url: string,
+    media_type: 1|2, // 1: 图片, 2: 音频
+    version = 2,
+    scene: number, //1 资料；2 评论；3 论坛；4 社交日志
+    openid: string,
+  ) {
+    return await this.request('POST', '/wxa/media_check_async', {
+      media_url,
+      media_type,
+      version,
+      scene,
+      openid,
+    }, {
+      access_token: accessToken
+    })
+  }
 }
