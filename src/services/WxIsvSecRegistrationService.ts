@@ -141,6 +141,14 @@ export class WxIsvSecRegistrationService extends WxIsvTokenService {
             { access_token: accessToken }
         ))
     }
+    async queryIcpNrlxTypes(accessToken: string) {
+        return (await this.request(
+            'GET',
+            '/wxa/icp/query_icp_nrlx_types',
+            {},
+            { access_token: accessToken }
+        ))
+    }
     async getIcpEntranceInfo(accessToken: string) {
         return (await this.request(
             'GET',
