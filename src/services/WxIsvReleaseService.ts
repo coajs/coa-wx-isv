@@ -2,6 +2,14 @@ import { $, _ } from 'coa-helper'
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 import { WxIsv } from '../typings'
 
+interface UgcDeclare {
+  scene: number[];           // UGC场景 0,不涉及用户生成内容, 1.用户资料,2.图片,3.视频,4.文本,5音频, 可多选,当scene填0时无需填写下列字段
+  method: number[];          // 内容安全机制 1.使用平台建议的内容安全API,2.使用其他的内容审核产品,3.通过人工审核把关,4.未做内容审核把关
+  otherSceneDesc: string;  //当scene选其他时的说明,不超时256字
+  hasAuditTeam: number;    // 是否有审核团队, 0.无,1.有,默认0
+  auditDesc: string;        // 说明当前对UGC内容的审核机制,不超过256字
+}
+
 export class WxIsvReleaseService extends WxIsvServiceBase {
   // 上传小程序代码
   async commit(
@@ -45,12 +53,16 @@ export class WxIsvReleaseService extends WxIsvServiceBase {
   }
 
   // 将代码包提交审核
-  async submitAudit(accessToken: string, item_list: any[], order_path: string, privacy_api_not_use: boolean) {
+  async submitAudit(accessToken: string, item_list: any[], order_path: string, privacy_api_not_use: boolean, ugc_declare?: UgcDeclare ) {
     item_list = $.snakeCaseKeys(item_list)
+    const payload: any = { item_list, order_path, privacy_api_not_use };
+    if (ugc_declare) {
+      payload.ugc_declare = $.snakeCaseKeys(ugc_declare)
+    }
     const { auditid: auditId = '' } = (await this.request(
       'POST',
       '/wxa/submit_audit',
-      { item_list, order_path, privacy_api_not_use },
+      payload,
       { access_token: accessToken },
     )) as WxIsv.WxIsvReleaseAuditSubmit
     return auditId as string
