@@ -109,12 +109,19 @@ export class WxIsvReleaseService extends WxIsvServiceBase {
   }
 
   // 版本回退
-  async revertCodeRelease(accessToken: string) {
+  async revertCodeRelease(accessToken: string, action?: 'get_history_version', appVersion?: string) {
+    const params: any = { access_token: accessToken };
+    if (action) {
+      params.action = action
+    }
+    if (appVersion) {
+      params.app_version = appVersion
+    }
     return (await this.request(
       'GET',
       '/wxa/revertcoderelease',
       {},
-      { access_token: accessToken }
+      params
     )) as WxIsv.WxIsvNormalResponse
   }
 
