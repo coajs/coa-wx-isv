@@ -147,21 +147,27 @@ export const AuthScopes: WxIsv.Dic<WxIsv.WxIsvAuthItem> = {
     desc: '支持对小商店订单及物流信息进行管理',
     mutex: false,
   },
-  76:{
+  76: {
     id: 76,
     name: '小程序违规与交易投诉管理权限',
     alias: 'complain',
     desc: '支持对小程序违规与交易投诉进行管理',
     mutex: true,
-  }
-  ,
-  88:{
+  },
+  88: {
     id: 88,
     name: '小程序链接管理',
     alias: 'url',
     desc: '基于该权限可获取小程序链接',
     mutex: false,
-  }
+  },
+  142: {
+    id: 142,
+    alias: 'expressSettlement',
+    name: "小程序发货管理服务",
+    desc: "基于此权限可为小程序提供支付单的发货信息录入、查询等",
+    mutex: false
+  },
 }
 
 export const MpAuthScopes: WxIsv.Dic<WxIsv.WxIsvAuthItem> = {
