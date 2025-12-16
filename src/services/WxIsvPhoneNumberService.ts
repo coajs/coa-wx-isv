@@ -1,7 +1,5 @@
-import { $ } from 'coa-helper'
 import { WxIsvServiceBase } from '../libs/WxIsvServiceBase'
 import { WxIsv } from '../typings'
-
 
 export class WxIsvPhoneNumberService extends WxIsvServiceBase {
   // 手机号快速验证 https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-info/phone-number/getPhoneNumber.html
