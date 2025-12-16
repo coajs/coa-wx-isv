@@ -8,7 +8,11 @@ export default async () => {
     wxSmConfig: {
       appId: '',
       secret: '',
-    }
+    },
+    wxStoreConfig: {
+      appId: '',
+      secret: '',
+    },
   }
 
   // 初始化Bin实例

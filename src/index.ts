@@ -28,5 +28,6 @@ export { WxIsvUrllinkService } from './services/WxIsvUrllinkService'
 export { WxIsvUserService } from './services/WxIsvUserService'
 export { WxIsvBasicService } from './services/WxlsvBasicService'
 export { WxIsvPhoneNumberService } from './services/WxIsvPhoneNumberService'
+export { WxIsvStoreOrderService } from './services/WxIsvStoreOrderService'
 export { WxIsv } from './typings'
 

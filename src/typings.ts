@@ -96,7 +96,11 @@ const wxIsvConfig = {
   wxSmConfig: {
     appId: '',
     secret: '',
-  }
+  },
+  wxStoreConfig: {
+    appId: '',
+    secret: '',
+  },
 }
 
 const wxIsvNormalResponse = {
